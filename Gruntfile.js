@@ -7,7 +7,11 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
-    app: '.'
+    app: '.',
+    jsFiles: [
+      '<%= config.app %>/**/*.js',
+      '!<%= config.app %>/**/node_modules/**'
+    ]
   };
 
   grunt.initConfig({
@@ -16,7 +20,7 @@ module.exports = function (grunt) {
 
     watch: {
         js: {
-            files: ['<%= config.app %>/**/*.js'],
+            files: config.jsFiles,
             tasks: ['jshint'],
             options: {
                 livereload: true
@@ -63,14 +67,12 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
-      all: [
-        'Gruntfile.js',
-        '<%= config.app %>/**/*.js'
-      ]
+      all: config.jsFiles
     }
   });
 
   grunt.registerTask('default', [
+      'jshint',
       'connect:livereload',
       'watch'
   ]);
