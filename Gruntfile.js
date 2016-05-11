@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 
     watch: {
         js: {
-            files: ['<%= config.app %>/js/{,*/}*.js'],
+            files: ['<%= config.app %>/**/*.js'],
             tasks: ['jshint'],
             options: {
                 livereload: true
@@ -30,9 +30,7 @@ module.exports = function (grunt) {
                 livereload: '<%= connect.options.livereload %>'
             },
             files: [
-                '<%= config.app %>/{,*/}*.html',
-                '<%= config.app %>/css/{,*/}*.css',
-                '<%= config.app %>/img/{,*/}*'
+                '<%= config.app %>/{,*/}*.*'
             ]
         }
     },
@@ -67,7 +65,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= config.app %>/js/{,*/}*.js'
+        '<%= config.app %>/**/*.js'
       ]
     }
   });
